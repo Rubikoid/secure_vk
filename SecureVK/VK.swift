@@ -79,8 +79,7 @@ class VKWorker
 		req.send()
 	}*/
 	
-	func getCurrentUserID()
-	{
+	func getCurrentUserID() {
 		let userIdGet = VK.API.Users.get()
 		userIdGet.send(onSuccess: {resp in storadge.currentUserID = resp[0]["id"].int!},
 		               onError: {err in storadge.currentUserID = -1; print(err)})
@@ -94,8 +93,7 @@ class VKWorker
 		NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: NSNotification.Name(rawValue: VK.LP.notifications.type4), object: nil)
 	}
 	
-	func IMPrepare(_ dialog: JSON, id: Int, maxID: Int)
-	{
+	func IMPrepare(_ dialog: JSON, id: Int, maxID: Int) {
 		var next = IM()
 		if dialog["chat_id"].int != nil {
 			next.title = dialog["title"].stringValue;
@@ -130,15 +128,8 @@ class VKWorker
 				var ret: [Message] = [Message]()
 				var i = resp["items"].array!.count - 1
 				while i>=0 {
-					var next: Message = Message()
 					let res = resp["items"][i]
-					next.id = res["id"].int!
-					next.user_id = res["user_id"].int!
-					next.body = res["body"].string!
-					next.date = res["date"].int!
-					next.out = res["out"].int!
-					next.read_state = res["read_state"].int!
-					ret.append(next)
+					ret.append(Message(res))
 					i -= 1
 				}
 				storadge.IMs[IMID].messages = ret
@@ -152,14 +143,8 @@ class VKWorker
 		let json = (notif.object! as! JSONWrapper).unwrap
 		let req = VK.API.Messages.getById([VK.Arg.messageIds: String(json[0][1].int!)])
 		req.send(onSuccess: {resp in
-			var next: Message = Message()
 			let res = resp["items"][0]
-			next.id = res["id"].int!
-			next.user_id = res["user_id"].int!
-			next.body = res["body"].string!
-			next.date = res["date"].int!
-			next.out = res["out"].int!
-			next.read_state = res["read_state"].int!
+			let next: Message = Message(res)
 			let uid = json[0][3].int!
 			let id = storadge.IMs.index(where: {$0.id == uid})!
 			storadge.IMs[id].last = next.body

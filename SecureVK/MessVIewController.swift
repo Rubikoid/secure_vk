@@ -102,8 +102,7 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 		return true
 	}
 	
-	func scrollToEnd()
-	{
+	func scrollToEnd() {
 		self.scrollView.contentView.scroll(to: NSPoint(x: 0.0, y: NSMaxY((self.scrollView.documentView?.frame)!)-self.scrollView.contentView.bounds.size.height))
 		self.scrollView.verticalScroller?.floatValue = 1
 	}

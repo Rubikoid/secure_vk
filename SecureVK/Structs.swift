@@ -20,12 +20,10 @@ struct IM
 	var last: String = ""
 	var messages: [Message] {
 		mutating get {
-			if self.messages_.count > 0
-			{
+			if self.messages_.count > 0 {
 				return self.messages_
 			}
-			else
-			{
+			else {
 				var selfIndex = -1
 				selfIndex = storadge.IMs.index(where: { $0.id == self.id })!
 				worker.getMessagesHistory([VK.Arg.peerId: String(self.id), VK.Arg.count: "20"], IMID: selfIndex)
@@ -75,6 +73,15 @@ struct Message
 	var out: Int = -1
 	
 	init(){ }
+	
+	init(_ res: JSON) {
+		id = res["id"].int!
+		user_id = res["user_id"].int!
+		body = res["body"].string!
+		date = res["date"].int!
+		out = res["out"].int!
+		read_state = res["read_state"].int!
+	}
 }
 
 
