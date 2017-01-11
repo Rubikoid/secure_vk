@@ -105,6 +105,11 @@ class VKWorker
 			next.id = dialog["user_id"].int!
 		}
 		next.last = dialog["body"].string!
+		if next.last.contains("RUBIVK_") && next.last.contains("_VKRUBI") {
+			next.last = next.last.replacingOccurrences(of: "RUBIVK_", with: "")
+			next.last = next.last.replacingOccurrences(of: "_VKRUBI", with: "")
+			next.last = storadge.secure.decrypt(next.last) ?? "_decryption error_"
+		}
 		storadge.IMs.append(next)
 		if maxID - 1 == id
 		{

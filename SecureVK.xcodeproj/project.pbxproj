@@ -7,11 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350897ED1E26D2090017F272 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 359449D01E26C28700FDCC67 /* README.md */; };
 		359449D11E26C28700FDCC67 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 359449CE1E26C28700FDCC67 /* .gitignore */; };
 		359449D21E26C28700FDCC67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 359449CF1E26C28700FDCC67 /* LICENSE */; };
-		359449D31E26C28700FDCC67 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 359449D01E26C28700FDCC67 /* README.md */; };
-		359449D61E26C3FF00FDCC67 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 359449D01E26C28700FDCC67 /* README.md */; };
-		359449D81E26C51D00FDCC67 /* Secure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359449D71E26C51D00FDCC67 /* Secure.swift */; };
+		359449D81E26C51D00FDCC67 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359449D71E26C51D00FDCC67 /* Crypto.swift */; };
 		35B603AF1E26BC73002F8D6E /* AppStoradge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603AE1E26BC73002F8D6E /* AppStoradge.swift */; };
 		35B603B51E26BC88002F8D6E /* IMVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603B01E26BC88002F8D6E /* IMVIewController.swift */; };
 		35B603B61E26BC88002F8D6E /* MessVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603B11E26BC88002F8D6E /* MessVIewController.swift */; };
@@ -30,7 +29,7 @@
 		359449CE1E26C28700FDCC67 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		359449CF1E26C28700FDCC67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		359449D01E26C28700FDCC67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		359449D71E26C51D00FDCC67 /* Secure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Secure.swift; sourceTree = "<group>"; };
+		359449D71E26C51D00FDCC67 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		35B603AE1E26BC73002F8D6E /* AppStoradge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoradge.swift; sourceTree = "<group>"; };
 		35B603B01E26BC88002F8D6E /* IMVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMVIewController.swift; sourceTree = "<group>"; };
 		35B603B11E26BC88002F8D6E /* MessVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessVIewController.swift; sourceTree = "<group>"; };
@@ -76,7 +75,7 @@
 				35B603B31E26BC88002F8D6E /* VK.swift */,
 				35B603B41E26BC88002F8D6E /* VKSettings.swift */,
 				35B603AE1E26BC73002F8D6E /* AppStoradge.swift */,
-				359449D71E26C51D00FDCC67 /* Secure.swift */,
+				359449D71E26C51D00FDCC67 /* Crypto.swift */,
 			);
 			name = VK;
 			sourceTree = "<group>";
@@ -207,7 +206,7 @@
 				359449D11E26C28700FDCC67 /* .gitignore in Resources */,
 				359449D21E26C28700FDCC67 /* LICENSE in Resources */,
 				35D833E21E26AE4C00F4AF52 /* Main.storyboard in Resources */,
-				359449D61E26C3FF00FDCC67 /* README.md in Resources */,
+				350897ED1E26D2090017F272 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,14 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				359449D81E26C51D00FDCC67 /* Secure.swift in Sources */,
+				359449D81E26C51D00FDCC67 /* Crypto.swift in Sources */,
 				35B603B71E26BC88002F8D6E /* Structs.swift in Sources */,
 				35B603B81E26BC88002F8D6E /* VK.swift in Sources */,
 				35D833DD1E26AE4C00F4AF52 /* ViewController.swift in Sources */,
 				35D833DB1E26AE4C00F4AF52 /* AppDelegate.swift in Sources */,
 				35B603B51E26BC88002F8D6E /* IMVIewController.swift in Sources */,
 				35B603B91E26BC88002F8D6E /* VKSettings.swift in Sources */,
-				359449D31E26C28700FDCC67 /* README.md in Sources */,
 				35B603B61E26BC88002F8D6E /* MessVIewController.swift in Sources */,
 				35B603AF1E26BC73002F8D6E /* AppStoradge.swift in Sources */,
 			);

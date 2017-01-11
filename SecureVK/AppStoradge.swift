@@ -21,6 +21,7 @@ class AppStoradge {
 	internal var IMs: [IM]
 	internal var selectedIM: Int = -1
 	internal var currentUserID: Int = -1
+	internal var secure: Crypto = Crypto()
  
 	init() {
 		self.loaded = false

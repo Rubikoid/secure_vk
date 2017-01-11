@@ -15,7 +15,7 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	@IBOutlet weak var textField: NSTextField!
 	@IBOutlet weak var messageTableView: NSTableView!
 	@IBOutlet weak var scrollView: NSScrollView!
-	@IBOutlet weak var clipView: NSClipView!
+	@IBOutlet weak var isEncrypted: NSButton!
 	var sizes: [Int: CGFloat] = [Int: CGFloat]()
 	
 	override func viewDidLoad() {
@@ -32,9 +32,15 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	
 	@IBAction func enter(_ sender: AnyObject) {
 		if storadge.selectedIM >= 0 {
+			var message = self.textField.stringValue
+			if self.isEncrypted.state == 1 {
+				message = storadge.secure.encrypt(message) ?? "_encryption error_"
+				message = "RUBIVK_"+message+"_VKRUBI"
+				print(message)
+			}
 			let req = VK.API.Messages.send([
 				VK.Arg.peerId: String(storadge.IMs[storadge.selectedIM].id),
-				VK.Arg.message: self.textField.stringValue
+				VK.Arg.message: message
 				])
 			print("message sended")
 			req.send()
@@ -44,6 +50,10 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 		{
 			print("im not selected")
 		}
+	}
+	
+	@IBAction func check(_ sender: NSButton) {
+		
 	}
 	
 	func tableViewColumnDidResize(_ notification: Notification) {
@@ -60,15 +70,6 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 		else { result.myMessage.stringValue = next.body }
 		//print("\(next.body): \(result.message.intrinsicContentSize):\(test(result.message)), \(result.myMessage.intrinsicContentSize):\(test(result.myMessage))")
 		return result
-	}
-	
-	func test(_ textField: NSTextField) -> NSSize
-	{
-		let width = self.messageTableView.bounds.width - 6.0//textField.bounds.width
-		let cell = textField.cell! as NSCell
-		let rect = cell.drawingRect(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), width, CGFloat(CGFloat.greatestFiniteMagnitude)))
-		let size = cell.cellSize(forBounds: rect)
-		return size
 	}
 	
 	//жутко говнокодная функция, ибо надо считать размеры и в appkit'e нету нормальных средств для автоматического выставления размера, тут это через жопу ;(
@@ -106,6 +107,17 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 		self.scrollView.contentView.scroll(to: NSPoint(x: 0.0, y: NSMaxY((self.scrollView.documentView?.frame)!)-self.scrollView.contentView.bounds.size.height))
 		self.scrollView.verticalScroller?.floatValue = 1
 	}
+	
+	func test(_ textField: NSTextField) -> NSSize
+	{
+		let width = self.messageTableView.bounds.width - 6.0//textField.bounds.width
+		let cell = textField.cell! as NSCell
+		let rect = cell.drawingRect(forBounds: NSMakeRect(CGFloat(0.0), CGFloat(0.0), width, CGFloat(CGFloat.greatestFiniteMagnitude)))
+		let size = cell.cellSize(forBounds: rect)
+		return size
+	}
+	
+	
 }
 
 class MessageList: NSTableCellView {

@@ -600,7 +600,7 @@
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MQH-aQ-Xnd">
                                                                     <rect key="frame" x="1" y="3" width="295" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" alignment="left" id="AEQ-jp-5Ec">
+                                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="AEQ-jp-5Ec">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -608,7 +608,7 @@
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Io-33-hEo">
                                                                     <rect key="frame" x="1" y="3" width="295" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="charWrapping" sendsActionOnEndEditing="YES" alignment="right" id="nX1-IJ-fW8">
+                                                                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="right" id="nX1-IJ-fW8">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -663,6 +663,17 @@
                                     <action selector="enter:" target="XIu-rJ-s1G" id="DmU-ha-KZ1"/>
                                 </connections>
                             </textField>
+                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-kJ-gfy">
+                                <rect key="frame" x="267" y="195" width="35" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="E" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="VdG-Bs-Z8A">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="check:" target="XIu-rJ-s1G" id="tNl-4O-zuT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8w9-vE-Z7b" secondAttribute="trailing" id="AMf-5c-gBJ"/>
@@ -678,7 +689,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="clipView" destination="adh-xm-yQN" id="6lk-gf-ycg"/>
+                        <outlet property="isEncrypted" destination="g5F-kJ-gfy" id="Enl-5o-oTS"/>
                         <outlet property="messageTableView" destination="GTX-4L-y65" id="gFa-Oe-026"/>
                         <outlet property="scrollView" destination="8w9-vE-Z7b" id="AsW-uy-KsZ"/>
                         <outlet property="textField" destination="m6s-vI-u2p" id="ydv-yk-z0Q"/>
