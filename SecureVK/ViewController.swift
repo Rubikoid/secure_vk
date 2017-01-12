@@ -15,8 +15,6 @@ class WinCont: NSWindowController
 		storadge.setWindowController(self)
 		storadge.setStoryBoard(self.storyboard!)
 		print("Window loaded")
-		//State = AppState(AppDeleg_: NSApplication.sharedApplication().delegate as! AppDelegate)
-		//State.LoadChange(true)
 	}
 }
 
@@ -39,7 +37,7 @@ class LoginViewController: NSViewController {
 	@IBAction func login(_ sender: AnyObject) {
 		if !storadge.isToken() {
 			VK.logIn()
-			print("SwiftyVK: Logout+Autorize")
+			print("SwiftyVK: Login")
 		}
 	}
 }

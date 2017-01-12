@@ -8,6 +8,7 @@
 
 import Foundation
 import CryptoSwift
+import SwiftyVK
 
 class Crypto {
 	var aes: AES? = nil

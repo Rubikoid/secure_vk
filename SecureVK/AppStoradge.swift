@@ -13,19 +13,28 @@ import SwiftyVK
 class AppStoradge {
 	fileprivate var loaded: Bool
 	fileprivate var vkToken: Bool
+	
+	internal var vkDelegate: MessengDeleg?
+	
 	internal var appDeleg: AppDelegate?
 	internal var window: WinCont?
 	internal var storyboard: NSStoryboard?
 	internal var IMTableView: NSTableView?
 	internal var messagesTableView: NSTableView?
+	
 	internal var IMs: [IM]
-	internal var selectedIM: Int = -1
-	internal var currentUserID: Int = -1
+	internal var selectedIM: Int
+	internal var currentUserID: Int
+	
+	internal var messagesLoadCurrentRow: Int = 0
+	
 	internal var secure: Crypto = Crypto()
- 
+	
 	init() {
 		self.loaded = false
 		self.vkToken = false
+		
+		self.vkDelegate = nil
 		
 		self.appDeleg = nil
 		self.window = nil
@@ -33,6 +42,8 @@ class AppStoradge {
 		self.IMTableView = nil
 		
 		self.IMs = [IM]()
+		self.selectedIM = -1
+		self.currentUserID = -1
 	}
 	
 	func setAppDelegate(_ AppDeleg_: AppDelegate) {
@@ -70,7 +81,7 @@ class AppStoradge {
 	}
 	
 	func IMTableUpdate() {
-		DispatchQueue.main.async { self.IMTableView?.reloadData() }
+		DispatchQueue.main.async { self.IMTableView?.reloadData(); }
 	}
 	
 	func messageTableUpdate() {

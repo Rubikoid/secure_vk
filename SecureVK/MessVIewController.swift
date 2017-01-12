@@ -44,6 +44,7 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 				])
 			print("message sended")
 			req.send()
+			//VK.Log
 			self.textField.stringValue = ""
 		}
 		else

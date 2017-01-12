@@ -31,66 +31,24 @@ class VKWorker
 					{
 						self.IMPrepare(resp["items"][i]["message"], id: i, maxID: resp["items"].count)
 					}
-					print("load ims end")
+					print("Loading IMs end")
+					self.messagesGet()
 				},
 				onError: {resp in print(resp)}
 		)
 	}
 	
-	//Старая функция подгрузки диалогов+сообщений
-	/*func IMsLoad() {
-		let req = VK.API.Messages.getDialogs()
-		req.successBlock = { resp in
-			let items = resp["items"]
-			for i in 0..<20 {
-				let mess = items[i]["message"]
-				let historyReq = VK.API.Messages.getHistory([VK.Arg.peerId: String(mess["chat_id"].int), VK.Arg.count: "20"])
-				historyReq.successBlock = {resp in
-					var next = IM()
-					if mess["chat_id"].int != nil {
-						next.title = mess["title"].stringValue;
-						next.id = mess["chat_id"].int! + 2000000000
-					}
-					else {
-						let usr = self.userGet(mess["user_id"].stringValue)[0] //синхронный http get запрос по users.get, ибо swiftyvk жестоко тормозит
-						next.title = usr["first_name"].stringValue + " " + usr["last_name"].stringValue
-						next.id = mess["user_id"].int!
-					}
-					var j = resp["items"].array!.count - 1
-					while j>=0 {
-						var nextMessage: Message = Message()
-						let res = resp["items"][j]
-						nextMessage.id = res["id"].int!
-						nextMessage.user_id = res["user_id"].int!
-						nextMessage.body = res["body"].string!
-						nextMessage.date = res["date"].int!
-						nextMessage.out = res["out"].int!
-						nextMessage.read_state = res["read_state"].int!
-						next.messages.append(nextMessage)
-						j -= 1
-					}
-					print(i)
-				}
-				historyReq.errorBlock = {err in print(err)}
-				historyReq.send()
-			}
-		}
-		req.errorBlock = {resp in storadge.IMsSet([IM(title_: String(resp.code),id_: -1)])}
-		req.send()
-	}*/
-	
 	func getCurrentUserID() {
 		let userIdGet = VK.API.Users.get()
-		userIdGet.send(onSuccess: {resp in storadge.currentUserID = resp[0]["id"].int!},
-		               onError: {err in storadge.currentUserID = -1; print(err)})
+		userIdGet.send(onSuccess: {resp in storadge.currentUserID = resp[0]["id"].int!; print("User id loaded")},
+		               onError: {err in storadge.currentUserID = -1; print("Error: \(err)")})
 	}
 	
 	func TokenChanged(_ state: Bool) {
 		storadge.appDeleg?.loginStatus.state = state ? 1 : 0
 		let view = state ? storadge.storyboard?.instantiateController(withIdentifier: "MainWind") as? NSViewController : storadge.storyboard?.instantiateController(withIdentifier: "LoginWind") as? NSViewController
 		DispatchQueue.main.async { storadge.window?.contentViewController = view }
-		VK.LP.start()
-		NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: NSNotification.Name(rawValue: VK.LP.notifications.type4), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: VK.LP.notifications.type4, object: nil)
 	}
 	
 	func IMPrepare(_ dialog: JSON, id: Int, maxID: Int) {
@@ -111,12 +69,10 @@ class VKWorker
 			next.last = storadge.secure.decrypt(next.last) ?? "_decryption error_"
 		}
 		storadge.IMs.append(next)
-		if maxID - 1 == id
-		{
+		if maxID - 1 == id {
 			storadge.IMTableUpdate()
 		}
 	}
-	
 	func userGet(_ id: String) -> JSON {
 		let url: URL = URL(string: "https://api.vk.com/method/users.get?user_ids="+id+"&v=5.60")!
 		let (data, _, _) = URLSession.shared.synchronousDataTaskWithURL(url)
@@ -124,20 +80,39 @@ class VKWorker
 		return jsonResult["response"]
 	}
 	
-	func getMessagesHistory(_ vkarg: [VK.Arg: String], IMID: Int){
+	func messagesGet() {
+		storadge.messagesLoadCurrentRow = 0
+		var req = VK.API.Messages.getHistory([VK.Arg.peerId: String(storadge.IMs[storadge.messagesLoadCurrentRow].id), VK.Arg.count: "20"])
+		req.next(self.messageWork)
+		req.send(onSuccess: {succ in storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: succ); print("Loaind messages end"); VK.LP.start() }, onError: {err in print(err)})
+	}
+	
+	func messageWork(resp: JSON) -> RequestConfig {
+		var new_req = VK.API.Messages.getHistory([VK.Arg.peerId: String(storadge.IMs[storadge.messagesLoadCurrentRow+1].id), VK.Arg.count: "20"])
+		if storadge.messagesLoadCurrentRow != storadge.IMs.count - 2 { new_req.next(self.messageWork) }
+		storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: resp)
+		storadge.messagesLoadCurrentRow += 1
+		return new_req
+	}
+	
+	func messagesParse(resp: JSON) -> [Message] {
+		var ret: [Message] = [Message]()
+		var i = resp["items"].array!.count - 1
+		while i>=0 {
+			let res = resp["items"][i]
+			ret.append(Message(res))
+			i -= 1
+		}
+		return ret
+
+	}
+	
+	func getMessagesHistory(_ vkarg: [VK.Arg: String], IMID: Int, doUpdate: Bool = false) {
 		let req = VK.API.Messages.getHistory(vkarg)
-		req.asynchronous = false
-		req.catchErrors = false
 		req.send(
 			onSuccess: {resp in
-				var ret: [Message] = [Message]()
-				var i = resp["items"].array!.count - 1
-				while i>=0 {
-					let res = resp["items"][i]
-					ret.append(Message(res))
-					i -= 1
-				}
-				storadge.IMs[IMID].messages = ret
+				storadge.IMs[IMID].messages = self.messagesParse(resp: resp)
+				print("Messages for \(storadge.IMs[IMID].title) loaded")
 			},
 			onError: {err in print(err)}
 		)

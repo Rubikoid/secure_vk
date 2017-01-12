@@ -18,31 +18,14 @@ struct IM
 	var ignore: Bool
 	var unread: Bool
 	var last: String = ""
-	var messages: [Message] {
-		mutating get {
-			if self.messages_.count > 0 {
-				return self.messages_
-			}
-			else {
-				var selfIndex = -1
-				selfIndex = storadge.IMs.index(where: { $0.id == self.id })!
-				worker.getMessagesHistory([VK.Arg.peerId: String(self.id), VK.Arg.count: "20"], IMID: selfIndex)
-				return self.messages_
-			}
-		}
-		
-		set {
-			self.messages_ = newValue
-		}
-	}
-	fileprivate var messages_: [Message]
+	var messages: [Message]
 	
 	init() {
 		title = "Default title"
 		img = NSImage()
 		ignore = false
 		unread = false
-		messages_ = [Message]()
+		messages = [Message]()
 		id = -1
 	}
 	init(title_: String, id_: Int) {
@@ -50,7 +33,7 @@ struct IM
 		img = NSImage()
 		ignore = false
 		unread = false
-		messages_ = [Message]()
+		messages = [Message]()
 		id = id_
 	}
 	init(title_: String, _: String, id_: Int) {
@@ -58,7 +41,7 @@ struct IM
 		img = NSImage()
 		ignore = false
 		unread = false
-		messages_ = [Message]()
+		messages = [Message]()
 		id = id_
 	}
 }
@@ -81,11 +64,11 @@ struct Message
 		date = res["date"].int!
 		out = res["out"].int!
 		read_state = res["read_state"].int!
-		if body.contains("RUBIVK_") && body.contains("_VKRUBI") {
+		/*if body.contains("RUBIVK_") && body.contains("_VKRUBI") {
 			body = body.replacingOccurrences(of: "RUBIVK_", with: "")
 			body = body.replacingOccurrences(of: "_VKRUBI", with: "")
 			body = storadge.secure.decrypt(body) ?? "_decryption error_"
-		}
+		}*/
 	}
 }
 

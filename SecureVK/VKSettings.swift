@@ -13,15 +13,14 @@ import SwiftyVK
 class MessengDeleg: VKDelegate {
 
 	let appID = "5803474"
-	let scope: [VK.Scope] = [VK.Scope.messages,.offline,.friends,.wall,.audio,.email]
-	let window: AnyObject
+	let scope: Set<VK.Scope> = [.messages,.offline,.friends,.wall,.audio,.email]
 	
-	init(window_: AnyObject) {
-		self.window = window_
-		VK.configure(appID: appID, delegate: self)
+	init() {
+		//VK.config.logToConsole = true
+		VK.configure(withAppId: appID, delegate: self)
 	}
 	
-	func vkWillAuthorize() -> [VK.Scope] { return self.scope }
+	func vkWillAuthorize() -> Set<VK.Scope> { return self.scope }
 	
 	func vkDidAuthorizeWith(parameters: Dictionary<String, String>) {
 		storadge.tokChange(true)
@@ -34,11 +33,11 @@ class MessengDeleg: VKDelegate {
 		storadge.tokChange(false)
 	}
 	
-	func vkAutorizationFailedWith(error: VK.Error) { print("Autorization failed with error: \n\(error)") }
+	func vkAutorizationFailedWith(error: AuthError) { print("Autorization failed with error: \n\(error)") }
 	
 	func vkShouldUseTokenPath() -> String? {
 		return nil
 	}
 	
-	func vkWillPresentView() -> NSWindow? { print("asdasd"); return NSApplication.shared().mainWindow }
+	func vkWillPresentView() -> NSWindow? { return NSApplication.shared().mainWindow }
 }

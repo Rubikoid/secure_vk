@@ -15,8 +15,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
 		print("App loaded")
-		_ = MessengDeleg(window_: storadge.window!)
+		storadge.vkDelegate = MessengDeleg()
 		storadge.setAppDelegate(self)
+		//print(storadge.secure.encrypt("а"))
 		// Insert code here to initialize your application
 	}
 

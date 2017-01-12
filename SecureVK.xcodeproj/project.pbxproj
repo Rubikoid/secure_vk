@@ -21,11 +21,11 @@
 		35D833DD1E26AE4C00F4AF52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D833DC1E26AE4C00F4AF52 /* ViewController.swift */; };
 		35D833DF1E26AE4C00F4AF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D833DE1E26AE4C00F4AF52 /* Assets.xcassets */; };
 		35D833E21E26AE4C00F4AF52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D833E01E26AE4C00F4AF52 /* Main.storyboard */; };
-		B68E9D0F0DE48562D67FC08F /* Pods_SecureVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AFE749A46947FD31E479CAF5 /* Pods_SecureVK.framework */; };
+		500B6CE3D28D196AAB30FA82 /* Pods_SecureVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		19A4A2498C72B9EEEC44326C /* Pods-SecureVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.debug.xcconfig"; sourceTree = "<group>"; };
+		0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.debug.xcconfig"; sourceTree = "<group>"; };
 		359449CE1E26C28700FDCC67 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		359449CF1E26C28700FDCC67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		359449D01E26C28700FDCC67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
@@ -42,8 +42,8 @@
 		35D833DE1E26AE4C00F4AF52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D833E11E26AE4C00F4AF52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35D833E31E26AE4C00F4AF52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8117A6C3DCB037E818E1365D /* Pods-SecureVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.release.xcconfig"; sourceTree = "<group>"; };
-		AFE749A46947FD31E479CAF5 /* Pods_SecureVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,13 +51,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B68E9D0F0DE48562D67FC08F /* Pods_SecureVK.framework in Frameworks */,
+				500B6CE3D28D196AAB30FA82 /* Pods_SecureVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		099CCECC8EDD8872E4810A6A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */,
+				A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		359449D51E26C29200FDCC67 /* .git */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,8 +105,8 @@
 			children = (
 				35D833D91E26AE4C00F4AF52 /* SecureVK */,
 				35D833D81E26AE4C00F4AF52 /* Products */,
-				63C6D9B24A700BEF1FABB9B2 /* Pods */,
-				50A7AFAB00B8231CCFDAEE49 /* Frameworks */,
+				099CCECC8EDD8872E4810A6A /* Pods */,
+				D88A674FDE91619C2A326281 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -122,21 +131,12 @@
 			path = SecureVK;
 			sourceTree = "<group>";
 		};
-		50A7AFAB00B8231CCFDAEE49 /* Frameworks */ = {
+		D88A674FDE91619C2A326281 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AFE749A46947FD31E479CAF5 /* Pods_SecureVK.framework */,
+				51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		63C6D9B24A700BEF1FABB9B2 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				19A4A2498C72B9EEEC44326C /* Pods-SecureVK.debug.xcconfig */,
-				8117A6C3DCB037E818E1365D /* Pods-SecureVK.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,12 +146,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35D833E61E26AE4C00F4AF52 /* Build configuration list for PBXNativeTarget "SecureVK" */;
 			buildPhases = (
-				D5A004AB391902235CD98D08 /* [CP] Check Pods Manifest.lock */,
+				791C90463712AE7CF31B1C3F /* [CP] Check Pods Manifest.lock */,
 				35D833D31E26AE4B00F4AF52 /* Sources */,
 				35D833D41E26AE4B00F4AF52 /* Frameworks */,
 				35D833D51E26AE4B00F4AF52 /* Resources */,
-				500E492DEE97EB82A8051945 /* [CP] Embed Pods Frameworks */,
-				AE457EE71CC284CB213D032E /* [CP] Copy Pods Resources */,
+				4A68A53BC17EF41D0C7A56D3 /* [CP] Embed Pods Frameworks */,
+				70474C52713847DC92BECBBA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -213,7 +213,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		500E492DEE97EB82A8051945 /* [CP] Embed Pods Frameworks */ = {
+		4A68A53BC17EF41D0C7A56D3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -228,7 +228,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AE457EE71CC284CB213D032E /* [CP] Copy Pods Resources */ = {
+		70474C52713847DC92BECBBA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -243,7 +243,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D5A004AB391902235CD98D08 /* [CP] Check Pods Manifest.lock */ = {
+		791C90463712AE7CF31B1C3F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -383,10 +383,11 @@
 		};
 		35D833E71E26AE4C00F4AF52 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 19A4A2498C72B9EEEC44326C /* Pods-SecureVK.debug.xcconfig */;
+			baseConfigurationReference = 0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ZG32BLEH6Y;
 				INFOPLIST_FILE = SecureVK/Info.plist;
@@ -399,10 +400,11 @@
 		};
 		35D833E81E26AE4C00F4AF52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8117A6C3DCB037E818E1365D /* Pods-SecureVK.release.xcconfig */;
+			baseConfigurationReference = A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = ZG32BLEH6Y;
 				INFOPLIST_FILE = SecureVK/Info.plist;

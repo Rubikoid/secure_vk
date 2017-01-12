@@ -16,8 +16,6 @@ class SplitView: NSSplitViewController {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		self.mainView.delegate = self
-		//print(self)
-		//print(self.splitViewItems)
         // Do view setup here.
     }
 }
@@ -57,6 +55,8 @@ class IMViewController: NSViewController, NSTableViewDataSource, NSTableViewDele
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		storadge.selectedIM = row
 		(storadge.messagesTableView?.delegate as! MessVeiwContoller).sizes.removeAll()
+		//if storadge.IMs[row].messages.count == 0 { worker.getMessagesHistory([VK.Arg.peerId: String(storadge.IMs[row].id), VK.Arg.count: "10"], IMID: row, doUpdate:  true) }
+		//else { storadge.messageTableUpdate() }
 		storadge.messageTableUpdate()
 		return true
 	}
