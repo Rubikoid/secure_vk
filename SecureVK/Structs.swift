@@ -64,11 +64,11 @@ struct Message
 		date = res["date"].int!
 		out = res["out"].int!
 		read_state = res["read_state"].int!
-		/*if body.contains("RUBIVK_") && body.contains("_VKRUBI") {
+		if body.contains("RUBIVK_") && body.contains("_VKRUBI") {
 			body = body.replacingOccurrences(of: "RUBIVK_", with: "")
 			body = body.replacingOccurrences(of: "_VKRUBI", with: "")
 			body = storadge.secure.decrypt(body) ?? "_decryption error_"
-		}*/
+		}
 	}
 }
 

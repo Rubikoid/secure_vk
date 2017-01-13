@@ -663,9 +663,12 @@
                                     <action selector="enter:" target="XIu-rJ-s1G" id="DmU-ha-KZ1"/>
                                 </connections>
                             </textField>
-                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5F-kJ-gfy">
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="g5F-kJ-gfy">
                                 <rect key="frame" x="267" y="195" width="35" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="31" id="ERv-Yz-poL"/>
+                                    <constraint firstAttribute="height" constant="20" id="bpz-Ly-2Lj"/>
+                                </constraints>
                                 <buttonCell key="cell" type="check" title="E" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="VdG-Bs-Z8A">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -680,11 +683,13 @@
                             <constraint firstAttribute="bottom" secondItem="tYr-M4-W0v" secondAttribute="bottom" id="N4K-aK-Ksl"/>
                             <constraint firstAttribute="trailing" secondItem="tYr-M4-W0v" secondAttribute="trailing" id="NoG-We-9XH"/>
                             <constraint firstItem="m6s-vI-u2p" firstAttribute="leading" secondItem="uvy-21-3GQ" secondAttribute="leading" id="W7y-pB-E8o"/>
+                            <constraint firstItem="g5F-kJ-gfy" firstAttribute="trailing" secondItem="8w9-vE-Z7b" secondAttribute="trailing" id="bdy-FP-Kuo"/>
                             <constraint firstItem="tYr-M4-W0v" firstAttribute="leading" secondItem="m6s-vI-u2p" secondAttribute="trailing" id="dZO-7h-xRL"/>
                             <constraint firstItem="tYr-M4-W0v" firstAttribute="leading" secondItem="m6s-vI-u2p" secondAttribute="trailing" id="fNH-W4-3el"/>
                             <constraint firstItem="8w9-vE-Z7b" firstAttribute="top" secondItem="uvy-21-3GQ" secondAttribute="top" id="ghL-ba-PVh"/>
                             <constraint firstItem="tYr-M4-W0v" firstAttribute="top" secondItem="8w9-vE-Z7b" secondAttribute="bottom" id="gmF-nU-UEl"/>
                             <constraint firstAttribute="bottom" secondItem="m6s-vI-u2p" secondAttribute="bottom" id="kvM-B5-N2b"/>
+                            <constraint firstItem="g5F-kJ-gfy" firstAttribute="top" secondItem="8w9-vE-Z7b" secondAttribute="top" id="lcf-3a-G2K"/>
                             <constraint firstItem="8w9-vE-Z7b" firstAttribute="leading" secondItem="uvy-21-3GQ" secondAttribute="leading" id="uhw-au-V2R"/>
                         </constraints>
                     </view>

@@ -27,14 +27,12 @@ class VKWorker
 		self.getCurrentUserID()
 		let req = VK.API.Messages.getDialogs()
 		req.send(onSuccess: {resp in
-					for i in 0..<resp["items"].count
-					{
-						self.IMPrepare(resp["items"][i]["message"], id: i, maxID: resp["items"].count)
-					}
-					print("Loading IMs end")
-					self.messagesGet()
-				},
-				onError: {resp in print(resp)}
+			for i in 0..<resp["items"].count {
+				self.IMPrepare(resp["items"][i]["message"], id: i, maxID: resp["items"].count)
+			}
+			print("Loading IMs end")
+			self.messagesGet()
+			}, onError: {resp in print(resp)}
 		)
 	}
 	
