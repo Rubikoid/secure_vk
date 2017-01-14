@@ -31,29 +31,29 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	}
 	
 	@IBAction func enter(_ sender: AnyObject) {
-		if storadge.selectedIM >= 0 {
+		if storadge.selectedIM >= 0 && VK.LP.isActive {
 			var message = self.textField.stringValue
 			if self.isEncrypted.state == 1 {
 				message = storadge.secure.encrypt(message) ?? "_encryption error_"
 				message = "RUBIVK_"+message+"_VKRUBI"
-				print(message)
+				Log.put("Messages",message)
 			}
-			let req = VK.API.Messages.send([
+			var req = VK.API.Messages.send([
 				VK.Arg.peerId: String(storadge.IMs[storadge.selectedIM].id),
 				VK.Arg.message: message
 				])
-			print("message sended")
+			req.httpMethod = .POST
 			req.send()
 			self.textField.stringValue = ""
 		}
 		else
 		{
-			print("im not selected")
+			Log.put("Error","IM not selected or LongPoll not active")
 		}
 	}
 	
 	@IBAction func check(_ sender: NSButton) {
-		
+
 	}
 	
 	func tableViewColumnDidResize(_ notification: Notification) {
@@ -99,7 +99,6 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	}
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		print(self.sizes[row]!)
 		return true
 	}
 	

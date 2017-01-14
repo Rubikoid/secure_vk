@@ -14,10 +14,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet weak var loginStatus: NSMenuItem!
 	
 	func applicationDidFinishLaunching(_ aNotification: Notification) {
-		print("App loaded")
+		Log.put("Loading status","App loaded")
 		storadge.vkDelegate = MessengDeleg()
 		storadge.setAppDelegate(self)
-		//print(storadge.secure.encrypt("а"))
 		// Insert code here to initialize your application
 	}
 

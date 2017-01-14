@@ -11,6 +11,8 @@
 		359449D11E26C28700FDCC67 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 359449CE1E26C28700FDCC67 /* .gitignore */; };
 		359449D21E26C28700FDCC67 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 359449CF1E26C28700FDCC67 /* LICENSE */; };
 		359449D81E26C51D00FDCC67 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 359449D71E26C51D00FDCC67 /* Crypto.swift */; };
+		35A1AF321E2A6E1200B2AD94 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A1AF311E2A6E1200B2AD94 /* Log.swift */; };
+		35A1AF341E2A8B0800B2AD94 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 35A1AF331E2A8B0800B2AD94 /* Podfile */; };
 		35B603AF1E26BC73002F8D6E /* AppStoradge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603AE1E26BC73002F8D6E /* AppStoradge.swift */; };
 		35B603B51E26BC88002F8D6E /* IMVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603B01E26BC88002F8D6E /* IMVIewController.swift */; };
 		35B603B61E26BC88002F8D6E /* MessVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B603B11E26BC88002F8D6E /* MessVIewController.swift */; };
@@ -21,15 +23,16 @@
 		35D833DD1E26AE4C00F4AF52 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D833DC1E26AE4C00F4AF52 /* ViewController.swift */; };
 		35D833DF1E26AE4C00F4AF52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 35D833DE1E26AE4C00F4AF52 /* Assets.xcassets */; };
 		35D833E21E26AE4C00F4AF52 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35D833E01E26AE4C00F4AF52 /* Main.storyboard */; };
-		500B6CE3D28D196AAB30FA82 /* Pods_SecureVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */; };
+		A556906E64D6FC2540743FED /* Pods_SecureVK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F2EC675FD84EAED625C0FFB /* Pods_SecureVK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.debug.xcconfig"; sourceTree = "<group>"; };
 		359449CE1E26C28700FDCC67 /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = SOURCE_ROOT; };
 		359449CF1E26C28700FDCC67 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = SOURCE_ROOT; };
 		359449D01E26C28700FDCC67 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		359449D71E26C51D00FDCC67 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		35A1AF311E2A6E1200B2AD94 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		35A1AF331E2A8B0800B2AD94 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; };
 		35B603AE1E26BC73002F8D6E /* AppStoradge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppStoradge.swift; sourceTree = "<group>"; };
 		35B603B01E26BC88002F8D6E /* IMVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IMVIewController.swift; sourceTree = "<group>"; };
 		35B603B11E26BC88002F8D6E /* MessVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessVIewController.swift; sourceTree = "<group>"; };
@@ -42,8 +45,9 @@
 		35D833DE1E26AE4C00F4AF52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		35D833E11E26AE4C00F4AF52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		35D833E31E26AE4C00F4AF52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.release.xcconfig"; sourceTree = "<group>"; };
+		37E79804884BCD404570F820 /* Pods-SecureVK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.release.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.release.xcconfig"; sourceTree = "<group>"; };
+		8F2EC675FD84EAED625C0FFB /* Pods_SecureVK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SecureVK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAA76FDE7FE5ADB64ABA6AB9 /* Pods-SecureVK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SecureVK.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,25 +55,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				500B6CE3D28D196AAB30FA82 /* Pods_SecureVK.framework in Frameworks */,
+				A556906E64D6FC2540743FED /* Pods_SecureVK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		099CCECC8EDD8872E4810A6A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */,
-				A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		359449D51E26C29200FDCC67 /* .git */ = {
 			isa = PBXGroup;
 			children = (
+				35A1AF331E2A8B0800B2AD94 /* Podfile */,
 				359449CE1E26C28700FDCC67 /* .gitignore */,
 				359449CF1E26C28700FDCC67 /* LICENSE */,
 				359449D01E26C28700FDCC67 /* README.md */,
@@ -80,11 +76,12 @@
 		35B603BA1E26BC93002F8D6E /* VK */ = {
 			isa = PBXGroup;
 			children = (
-				35B603B21E26BC88002F8D6E /* Structs.swift */,
-				35B603B31E26BC88002F8D6E /* VK.swift */,
 				35B603B41E26BC88002F8D6E /* VKSettings.swift */,
+				35B603B21E26BC88002F8D6E /* Structs.swift */,
 				35B603AE1E26BC73002F8D6E /* AppStoradge.swift */,
+				35B603B31E26BC88002F8D6E /* VK.swift */,
 				359449D71E26C51D00FDCC67 /* Crypto.swift */,
+				35A1AF311E2A6E1200B2AD94 /* Log.swift */,
 			);
 			name = VK;
 			sourceTree = "<group>";
@@ -105,8 +102,8 @@
 			children = (
 				35D833D91E26AE4C00F4AF52 /* SecureVK */,
 				35D833D81E26AE4C00F4AF52 /* Products */,
-				099CCECC8EDD8872E4810A6A /* Pods */,
-				D88A674FDE91619C2A326281 /* Frameworks */,
+				FED4D402269EC4958A0AB888 /* Pods */,
+				9D2AD6CA2E4BBAF6E7351706 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -131,12 +128,21 @@
 			path = SecureVK;
 			sourceTree = "<group>";
 		};
-		D88A674FDE91619C2A326281 /* Frameworks */ = {
+		9D2AD6CA2E4BBAF6E7351706 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				51777423996693C6C2AEA8EF /* Pods_SecureVK.framework */,
+				8F2EC675FD84EAED625C0FFB /* Pods_SecureVK.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FED4D402269EC4958A0AB888 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EAA76FDE7FE5ADB64ABA6AB9 /* Pods-SecureVK.debug.xcconfig */,
+				37E79804884BCD404570F820 /* Pods-SecureVK.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,12 +152,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 35D833E61E26AE4C00F4AF52 /* Build configuration list for PBXNativeTarget "SecureVK" */;
 			buildPhases = (
-				791C90463712AE7CF31B1C3F /* [CP] Check Pods Manifest.lock */,
+				3745E6C5DBFADA6C948A39E5 /* [CP] Check Pods Manifest.lock */,
 				35D833D31E26AE4B00F4AF52 /* Sources */,
 				35D833D41E26AE4B00F4AF52 /* Frameworks */,
 				35D833D51E26AE4B00F4AF52 /* Resources */,
-				4A68A53BC17EF41D0C7A56D3 /* [CP] Embed Pods Frameworks */,
-				70474C52713847DC92BECBBA /* [CP] Copy Pods Resources */,
+				7D8CDC48BE1338A07A43AF11 /* [CP] Embed Pods Frameworks */,
+				954427E4FB459EE3D815DC54 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -202,6 +208,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				35A1AF341E2A8B0800B2AD94 /* Podfile in Resources */,
 				35D833DF1E26AE4C00F4AF52 /* Assets.xcassets in Resources */,
 				359449D11E26C28700FDCC67 /* .gitignore in Resources */,
 				359449D21E26C28700FDCC67 /* LICENSE in Resources */,
@@ -213,37 +220,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4A68A53BC17EF41D0C7A56D3 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		70474C52713847DC92BECBBA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		791C90463712AE7CF31B1C3F /* [CP] Check Pods Manifest.lock */ = {
+		3745E6C5DBFADA6C948A39E5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -258,6 +235,36 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		7D8CDC48BE1338A07A43AF11 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		954427E4FB459EE3D815DC54 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SecureVK/Pods-SecureVK-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -267,6 +274,7 @@
 			files = (
 				359449D81E26C51D00FDCC67 /* Crypto.swift in Sources */,
 				35B603B71E26BC88002F8D6E /* Structs.swift in Sources */,
+				35A1AF321E2A6E1200B2AD94 /* Log.swift in Sources */,
 				35B603B81E26BC88002F8D6E /* VK.swift in Sources */,
 				35D833DD1E26AE4C00F4AF52 /* ViewController.swift in Sources */,
 				35D833DB1E26AE4C00F4AF52 /* AppDelegate.swift in Sources */,
@@ -383,7 +391,7 @@
 		};
 		35D833E71E26AE4C00F4AF52 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0ADE415295C19D795DEC84A8 /* Pods-SecureVK.debug.xcconfig */;
+			baseConfigurationReference = EAA76FDE7FE5ADB64ABA6AB9 /* Pods-SecureVK.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -400,7 +408,7 @@
 		};
 		35D833E81E26AE4C00F4AF52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A61E7CAA0F97C6A67BBC52A0 /* Pods-SecureVK.release.xcconfig */;
+			baseConfigurationReference = 37E79804884BCD404570F820 /* Pods-SecureVK.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

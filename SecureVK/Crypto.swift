@@ -19,7 +19,7 @@ class Crypto {
 		}
 		catch {
 			self.aes = nil
-			print("AES init error: \(error)")
+			Log.put("Error","AES init error: \(error)")
 		}
 	}
 	
@@ -29,7 +29,7 @@ class Crypto {
 			return ret
 		}
 		catch {
-			print("encrypt error: \(error)")
+			Log.put("Error","encrypt error: \(error)")
 		}
 		return nil
 	}
@@ -46,7 +46,7 @@ class Crypto {
 			}
 		}
 		catch {
-			print("decrypt error: \(error)") //О господи, эта херня походу работает
+			Log.put("Error","decrypt error: \(error)") //О господи, эта херня походу работает
 		}
 		return nil
 	}

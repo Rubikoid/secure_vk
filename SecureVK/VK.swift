@@ -18,8 +18,25 @@ var worker: VKWorker = VKWorker()
 
 class VKWorker
 {
-	init() {
-		
+	init() { }
+	
+	func getCurrentUserID() {
+		let userIdGet = VK.API.Users.get()
+		userIdGet.send(onSuccess: {resp in
+			storadge.currentUserID = resp[0]["id"].int!
+			Log.put("Loading status","User id loaded")
+		},
+		onError: {err in
+			storadge.currentUserID = -1
+			Log.put("Error","getCurrentUserID: \(err)")
+		})
+	}
+	
+	func TokenChanged(_ state: Bool) {
+		storadge.appDeleg?.loginStatus.state = state ? 1 : 0
+		let view = state ? storadge.storyboard?.instantiateController(withIdentifier: "MainWind") as? NSViewController : storadge.storyboard?.instantiateController(withIdentifier: "LoginWind") as? NSViewController
+		DispatchQueue.main.async { storadge.window?.contentViewController = view }
+		NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: VK.LP.notifications.type4, object: nil)
 	}
 	
 	func IMsLoad()
@@ -30,23 +47,11 @@ class VKWorker
 			for i in 0..<resp["items"].count {
 				self.IMPrepare(resp["items"][i]["message"], id: i, maxID: resp["items"].count)
 			}
-			print("Loading IMs end")
+			Log.put("Loading status","Loading IMs end")
+			storadge.messagesLoadCurrentRow = 0
 			self.messagesGet()
-			}, onError: {resp in print(resp)}
+			}, onError: {resp in Log.put("Error","getDialogs: \(resp)")}
 		)
-	}
-	
-	func getCurrentUserID() {
-		let userIdGet = VK.API.Users.get()
-		userIdGet.send(onSuccess: {resp in storadge.currentUserID = resp[0]["id"].int!; print("User id loaded")},
-		               onError: {err in storadge.currentUserID = -1; print("Error: \(err)")})
-	}
-	
-	func TokenChanged(_ state: Bool) {
-		storadge.appDeleg?.loginStatus.state = state ? 1 : 0
-		let view = state ? storadge.storyboard?.instantiateController(withIdentifier: "MainWind") as? NSViewController : storadge.storyboard?.instantiateController(withIdentifier: "LoginWind") as? NSViewController
-		DispatchQueue.main.async { storadge.window?.contentViewController = view }
-		NotificationCenter.default.addObserver(self, selector: #selector(self.newMessage), name: VK.LP.notifications.type4, object: nil)
 	}
 	
 	func IMPrepare(_ dialog: JSON, id: Int, maxID: Int) {
@@ -79,15 +84,31 @@ class VKWorker
 	}
 	
 	func messagesGet() {
-		storadge.messagesLoadCurrentRow = 0
 		var req = VK.API.Messages.getHistory([VK.Arg.peerId: String(storadge.IMs[storadge.messagesLoadCurrentRow].id), VK.Arg.count: "20"])
 		req.next(self.messageWork)
-		req.send(onSuccess: {succ in storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: succ); print("Loaind messages end"); VK.LP.start() }, onError: {err in print(err)})
+		req.send(onSuccess: {succ in
+			storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: succ)
+			Log.put("Loading status","Loaind messages end")
+			VK.LP.start()
+			}, onError: { err in
+			if err.localizedDescription.contains("Too many requests per second") {
+				if storadge.messagesLoadCurrentRow == storadge.IMs.count - 1 {
+					Log.put("Error","Too many requests per second error - to last")
+					let req = VK.API.Messages.getHistory([VK.Arg.peerId: String(storadge.IMs[storadge.messagesLoadCurrentRow].id), VK.Arg.count: "20"])
+					req.send(onSuccess: {succ in storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: succ); Log.put("Loading status","Loaind messages end"); }, onError: { err in Log.put("Error","restarted messagesGet: \(err)") })
+				}
+				else {
+					Log.put("Error","Too many requests per second error - restart")
+					self.messagesGet()
+				}
+			}
+			else { Log.put("Error","messagesGet: \(err)") }
+		})
 	}
 	
 	func messageWork(resp: JSON) -> RequestConfig {
 		var new_req = VK.API.Messages.getHistory([VK.Arg.peerId: String(storadge.IMs[storadge.messagesLoadCurrentRow+1].id), VK.Arg.count: "20"])
-		if storadge.messagesLoadCurrentRow != storadge.IMs.count - 2 { new_req.next(self.messageWork) }
+		if storadge.messagesLoadCurrentRow < storadge.IMs.count - 2 { new_req.next(self.messageWork) }
 		storadge.IMs[storadge.messagesLoadCurrentRow].messages = self.messagesParse(resp: resp)
 		storadge.messagesLoadCurrentRow += 1
 		return new_req
@@ -110,14 +131,14 @@ class VKWorker
 		req.send(
 			onSuccess: {resp in
 				storadge.IMs[IMID].messages = self.messagesParse(resp: resp)
-				print("Messages for \(storadge.IMs[IMID].title) loaded")
+				Log.put("Loading status","Messages for \(storadge.IMs[IMID].title) loaded")
 			},
-			onError: {err in print(err)}
+			onError: {err in Log.put("Error","getMessagesHistory: \(err)")}
 		)
 	}
 	
 	@objc func newMessage(_ notif: Notification) {
-		print("geted new message")
+		Log.put("Messages","Recived new message")
 		let json = (notif.object! as! JSONWrapper).unwrap
 		let req = VK.API.Messages.getById([VK.Arg.messageIds: String(json[0][1].int!)])
 		req.send(onSuccess: {resp in
@@ -129,9 +150,9 @@ class VKWorker
 			storadge.IMs[id].messages.append(next)
 			storadge.IMTableUpdate()
 			storadge.messageTableUpdate()
-			print("loaded new message")
+			Log.put("Messages","Processed new message")
 		},
-		         onError: {err in print(err)}
+		         onError: {err in Log.put("Error","newMessage: \(err)")}
 		)
 	}
 }

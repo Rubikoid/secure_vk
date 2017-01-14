@@ -14,7 +14,7 @@ class WinCont: NSWindowController
 	override func windowDidLoad() {
 		storadge.setWindowController(self)
 		storadge.setStoryBoard(self.storyboard!)
-		print("Window loaded")
+		Log.put("Loading status","Window loaded")
 	}
 }
 
@@ -24,7 +24,7 @@ class LoginViewController: NSViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		print("View login loaded")
+		Log.put("Loading status","View login loaded")
 		// Do any additional setup after loading the view.
 	}
 	
@@ -37,7 +37,7 @@ class LoginViewController: NSViewController {
 	@IBAction func login(_ sender: AnyObject) {
 		if !storadge.isToken() {
 			VK.logIn()
-			print("SwiftyVK: Login")
+			Log.put("VK","Login button")
 		}
 	}
 }

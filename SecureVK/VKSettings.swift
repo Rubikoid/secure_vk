@@ -24,16 +24,15 @@ class MessengDeleg: VKDelegate {
 	
 	func vkDidAuthorizeWith(parameters: Dictionary<String, String>) {
 		storadge.tokChange(true)
-		print("Token loaded")
-		//print(parameters)
+		Log.put("Loading status","Token loaded")
 	}
 	
 	func vkDidUnauthorize() {
-		print("Token deleted: user log out")
+		Log.put("Loading status","Token deleted: user log out")
 		storadge.tokChange(false)
 	}
 	
-	func vkAutorizationFailedWith(error: AuthError) { print("Autorization failed with error: \n\(error)") }
+	func vkAutorizationFailedWith(error: AuthError) { Log.put("Error","Autorization failed with error: \n\(error)") }
 	
 	func vkShouldUseTokenPath() -> String? {
 		return nil
