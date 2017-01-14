@@ -25,7 +25,7 @@ class Crypto {
 	
 	func encrypt(_ data: String) -> String? {
 		do {
-			let ret: String? = try self.aes?.encrypt(Array(data.utf8)).toBase64()?.toBase64()
+			let ret: String? = try self.aes?.encrypt(Array(data.utf8)).toBase64()
 			return ret
 		}
 		catch {
@@ -36,9 +36,9 @@ class Crypto {
 	
 	func decrypt(_ data: String) -> String? {
 		do {
-			let dataArray0 = Data(base64Encoded: data)
-			if let unDataArray0 = dataArray0, let dataArray1 = Data(base64Encoded: unDataArray0) {//TODO: сделать нормально этот говнокод
-				let decrypted = try self.aes?.decrypt(dataArray1)
+			let decodedData = Data(base64Encoded: data)
+			if let unDecodedData = decodedData{
+				let decrypted = try self.aes?.decrypt(unDecodedData)
 				if let decry = decrypted {
 					let ret: String? = String(bytes: decry, encoding: String.Encoding.utf8)
 					return ret
@@ -46,7 +46,7 @@ class Crypto {
 			}
 		}
 		catch {
-			Log.put("Error","decrypt error: \(error)") //О господи, эта херня походу работает
+			Log.put("Error","decrypt error: \(error)")
 		}
 		return nil
 	}
