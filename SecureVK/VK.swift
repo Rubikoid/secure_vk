@@ -24,6 +24,7 @@ class VKWorker
 		let userIdGet = VK.API.Users.get()
 		userIdGet.send(onSuccess: {resp in
 			storadge.currentUserID = resp[0]["id"].int!
+			storadge.users.updateValue(User(id_: resp[0]["id"].int!, fname_: resp[0]["first_name"].stringValue, lname_: resp[0]["last_name"].stringValue), forKey: resp[0]["id"].int!)
 			Log.put("Loading status","User id loaded")
 		},
 		onError: {err in
@@ -59,10 +60,21 @@ class VKWorker
 		if dialog["chat_id"].int != nil {
 			next.title = dialog["title"].stringValue;
 			next.id = dialog["chat_id"].int! + 2000000000
+			let req = VK.API.Messages.getChatUsers([VK.Arg.chatId: String(dialog["chat_id"].int!), VK.Arg.fields: "online"])
+			req.send(onSuccess: {resp in
+				for i in 0..<resp.count {
+					if !storadge.users.keys.contains(resp[i]["id"].int!) {
+						storadge.users.updateValue(User(id_: resp[i]["id"].int!, fname_: resp[i]["first_name"].stringValue, lname_: resp[i]["last_name"].stringValue), forKey: resp[i]["id"].int!)
+					}
+				}
+			}, onError: {err in Log.put("Error","getChatUsers: \(err)")})
 		}
 		else {
-			let usr = self.userGet(dialog["user_id"].stringValue)[0] //синхронный http get запрос по users.get, ибо swiftyvk жестоко тормозит
-			next.title = usr["first_name"].stringValue + " " + usr["last_name"].stringValue
+			let usr = User(id_: dialog["user_id"].int!)
+			next.title = usr.toString()
+			if !storadge.users.keys.contains(dialog["user_id"].int!) {
+				storadge.users.updateValue(usr, forKey: dialog["user_id"].int!)
+			}
 			next.id = dialog["user_id"].int!
 		}
 		next.last = dialog["body"].string!
@@ -145,7 +157,7 @@ class VKWorker
 			let res = resp["items"][0]
 			let next: Message = Message(res)
 			let uid = json[0][3].int!
-			let id = storadge.IMs.index(where: {$0.id == uid})!
+			let id = storadge.IMs.index(where: {$0.id == uid})! // TODO: Сделать подгрузку диалога при новом сообщении в неподгруженном изначально диалоге
 			storadge.IMs[id].last = next.body
 			storadge.IMs[id].messages.append(next)
 			storadge.IMTableUpdate()

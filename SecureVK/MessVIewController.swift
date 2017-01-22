@@ -64,10 +64,10 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let result: MessageList = tableView.make(withIdentifier: tableColumn!.identifier, owner: self) as! MessageList
 		let next = storadge.IMs[storadge.selectedIM].messages[row]
-		result.message.stringValue = ""
-		result.myMessage.stringValue = ""
-		if next.out == 0 { result.message.stringValue = next.body }
-		else { result.myMessage.stringValue = next.body }
+		result.message.stringValue = next.body
+		
+		if next.out == 1 { result.senderName.stringValue = storadge.users[storadge.currentUserID]?.toString() ?? "_USR_NOT_FOUND_"}
+		else { result.senderName.stringValue = storadge.users[next.user_id]?.toString() ?? "_USR_NOT_FOUND_" }
 		//print("\(next.body): \(result.message.intrinsicContentSize):\(test(result.message)), \(result.myMessage.intrinsicContentSize):\(test(result.myMessage))")
 		return result
 	}
@@ -75,8 +75,7 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 	//жутко говнокодная функция, ибо надо считать размеры и в appkit'e нету нормальных средств для автоматического выставления размера, тут это через жопу ;(
 	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
 		var ret: Double = 0.0
-		#if OLD_STYLE
-			let oneSymbolSize = 15.0, oneLineSize = 23.0
+		/*	let oneSymbolSize = 15.0, oneLineSize = 23.0
 			let currentWidth = self.scrollView.contentSize.width
 			let message: String = storadge.IMs[storadge.selectedIM].messages[row].body
 			if (Double(message.characters.count)*oneSymbolSize)/Double(currentWidth) < 1 {
@@ -85,11 +84,11 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 			else {
 				ret = Double(Int((Double(message.characters.count)*oneSymbolSize)/Double(currentWidth))) * oneLineSize
 			}
-		#else
-			let result: MessageList = tableView.make(withIdentifier: "collIdentify", owner: self) as! MessageList
-			result.message.stringValue = storadge.IMs[storadge.selectedIM].messages[row].body
-			ret = Double(test(result.message).height) + 6.0
-		#endif
+		Из-за изменения способа отображения сообщений эта херня больше не будет работать по старому и плохому методу.
+		*/
+		let result: MessageList = tableView.make(withIdentifier: "collIdentify", owner: self) as! MessageList
+		result.message.stringValue = storadge.IMs[storadge.selectedIM].messages[row].body
+		ret = Double(test(result.message).height) + 6.0 + 17.0
 		self.sizes.updateValue(CGFloat(ret), forKey: row)
 		return CGFloat(ret)
 	}
@@ -120,6 +119,6 @@ class MessVeiwContoller: NSViewController, NSTableViewDataSource, NSTableViewDel
 }
 
 class MessageList: NSTableCellView {
+	@IBOutlet weak var senderName: NSTextField!
 	@IBOutlet weak var message: NSTextField!
-	@IBOutlet weak var myMessage: NSTextField!
 }

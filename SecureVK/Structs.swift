@@ -46,6 +46,30 @@ struct IM
 	}
 }
 
+struct User {
+	var id: Int
+	var fname: String
+	var lname: String
+	
+	init(id_: Int) {
+		id = id_
+		let usr = worker.userGet(String(id))[0]
+		fname = usr["first_name"].stringValue
+		lname = usr["last_name"].stringValue
+	}
+	
+	init(id_: Int, fname_: String, lname_: String)
+	{
+		id = id_
+		fname = fname_
+		lname = lname_
+	}
+	
+	func toString() -> String {
+		return fname + " " + lname
+	}
+}
+
 struct Message
 {
 	var id: Int = -1

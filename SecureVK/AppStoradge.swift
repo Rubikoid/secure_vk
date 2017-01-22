@@ -23,6 +23,7 @@ class AppStoradge {
 	internal var messagesTableView: NSTableView?
 	
 	internal var IMs: [IM]
+	internal var users: [Int: User]
 	internal var selectedIM: Int
 	internal var currentUserID: Int
 	
@@ -44,6 +45,8 @@ class AppStoradge {
 		self.IMs = [IM]()
 		self.selectedIM = -1
 		self.currentUserID = -1
+		
+		self.users = [Int: User]()
 	}
 	
 	func setAppDelegate(_ AppDeleg_: AppDelegate) {
